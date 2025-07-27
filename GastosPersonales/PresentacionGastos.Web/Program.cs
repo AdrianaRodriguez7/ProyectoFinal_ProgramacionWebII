@@ -1,11 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using DatosGastos.Data;
+using EnlaceGastos.Services.Interfaces;
+using EnlaceGastos.Services.Servicios;
+using EnlaceGastos.Services.Estrategias;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Agregar el DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSQL")));
+
+// Agregar servicios personalizados
+builder.Services.AddScoped<ITransaccionService, TransaccionService>();
+builder.Services.AddScoped<IResumenService, ResumenService>();
+builder.Services.AddScoped<IAnalisisFinancieroStrategy, EstrategiaMensaje>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
