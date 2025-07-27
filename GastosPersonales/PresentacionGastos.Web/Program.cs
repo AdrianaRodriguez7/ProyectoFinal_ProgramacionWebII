@@ -15,9 +15,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<ITransaccionService, TransaccionService>();
 builder.Services.AddScoped<IResumenService, ResumenService>();
 builder.Services.AddScoped<IAnalisisFinancieroStrategy, EstrategiaMensaje>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// REGISTRO DE SERVICIOS PERSONALIZADOS
+builder.Services.AddScoped<ITransaccionService, TransaccionService>();
+builder.Services.AddScoped<IResumenService, ResumenService>();
+builder.Services.AddScoped<IAnalisisFinancieroStrategy, EstrategiaMensaje>();
 
 var app = builder.Build();
 
