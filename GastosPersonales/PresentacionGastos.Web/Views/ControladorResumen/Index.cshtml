@@ -1,0 +1,32 @@
+﻿@model PresentacionGastos.Web.Models.ResumenVM
+
+@{
+    ViewData["Title"] = "Resumen financiero";
+}
+
+<h2>Resumen financiero</h2>
+
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label for="FechaInicio">Fecha inicio:</label>
+        <input asp-for="FechaInicio" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label for="FechaFin">Fecha fin:</label>
+        <input asp-for="FechaFin" class="form-control" type="date" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Consultar</button>
+</form>
+
+@if (Model.Mensaje != null && Model.Mensaje != "")
+{
+    <div class="alert alert-info mt-4">
+        <strong>Mensaje:</strong> @Model.Mensaje
+    </div>
+
+    <div class="mt-2">
+        <p><strong>Total de ingresos:</strong> @Model.TotalIngresos.ToString("C")</p>
+        <p><strong>Total de egresos:</strong> @Model.TotalEgresos.ToString("C")</p>
+    </div>
+}
+
