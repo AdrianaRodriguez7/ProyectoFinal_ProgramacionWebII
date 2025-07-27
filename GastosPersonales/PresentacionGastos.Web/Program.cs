@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using DatosGastos.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Agregar el DbContext
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSQL")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
