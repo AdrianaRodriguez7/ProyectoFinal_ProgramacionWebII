@@ -20,3 +20,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+.grafico-pequeno {
+    max-width: 300px !important;
+    max-height: 300px !important;
+    height: auto !important;
+}
+

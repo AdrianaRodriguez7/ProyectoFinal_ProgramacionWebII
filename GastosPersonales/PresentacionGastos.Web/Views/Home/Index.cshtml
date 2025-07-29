@@ -2,7 +2,37 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-3">
+              <a asp-controller="ControladorResumen" asp-action="Index" class="text-decoration-none text-dark">
+            <div class="card shadow tarjeta-opcion">
+                <img src="~/images/ganancia.png" class="card-img-top icono-opcion" alt="Resumen">
+                <div class="card-body">
+                    <h5 class="card-title">Resumen</h5>
+                </div>
+            </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-controller="ControladorTransacciones" asp-action="Index" class="text-decoration-none text-dark">
+            <div class="card shadow tarjeta-opcion">
+                <img src="~/images/flujo-de-fondos.png" class="card-img-top icono-opcion" alt="Transacciones">
+                <div class="card-body">
+                    <h5 class="card-title">Transacciones</h5>
+                </div>
+            </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-controller="ControladorCategorias" asp-action="Index" class="text-decoration-none text-dark">
+            <div class="card shadow tarjeta-opcion">
+                <img src="~/images/categoria.png" class="card-img-top icono-opcion" alt="Categorías">
+                <div class="card-body">
+                    <h5 class="card-title">Categorías</h5>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
 </div>

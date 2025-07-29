@@ -1,21 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Mensajes>
-	<Mensaje tipo="nulo">😴 Nada de movimiento... ni un peso ni un gasto.</Mensaje>
-	<Mensaje tipo="nulo">🕸️ Tu billetera tiene telarañas.</Mensaje>
+	<Mensaje tipo="nulo"> Nada de movimiento... ni un peso ni un gasto.</Mensaje>
+	<Mensaje tipo="nulo"> Tu billetera tiene telarañas.</Mensaje>
 
-	<Mensaje tipo="soloEgresos">🚨 Estás gastando sin ingresar nada. Modo supervivencia ON.</Mensaje>
-	<Mensaje tipo="soloEgresos">💸 Solo egresos. ¿Vives del aire?</Mensaje>
+	<Mensaje tipo="soloEgresos"> Estás gastando sin ingresar nada. Modo supervivencia ON.</Mensaje>
+	<Mensaje tipo="soloEgresos"> Solo egresos. ¿Vives del aire?</Mensaje>
 
-	<Mensaje tipo="soloIngresos">😎 Ingresos sin egresos... ¿Eres millonario o qué?</Mensaje>
-	<Mensaje tipo="soloIngresos">💼 Todo entra, nada sale. ¡A ahorrar!</Mensaje>
+	<Mensaje tipo="soloIngresos"> Ingresos sin egresos... ¿Eres millonario o qué?</Mensaje>
+	<Mensaje tipo="soloIngresos"> Todo entra, nada sale. ¡A ahorrar!</Mensaje>
 
-	<Mensaje tipo="empate">🔁 Empate técnico. Lo que entra, sale.</Mensaje>
-	<Mensaje tipo="empate">⚖️ Ingresos = egresos. ¡Equilibrio total!</Mensaje>
+	<Mensaje tipo="empate"> Empate técnico. Lo que entra, sale.</Mensaje>
+	<Mensaje tipo="empate"> Ingresos = egresos. ¡Equilibrio total!</Mensaje>
 
-	<Mensaje tipo="exceso">😱 Te pasaste por {0:N0}%. ¡Cuidado con la tarjeta!</Mensaje>
-	<Mensaje tipo="exceso">📉 Gastaste más de lo que ganas... otra vez. ({0:N0}%)</Mensaje>
+	<Mensaje tipo="ahorro"> Buen trabajo, ahorraste un {0:N1}% este mes.</Mensaje>
+	<Mensaje tipo="ahorro"> Ahorraste el {0:N1}%. ¡Crack financiero!</Mensaje>
 
-	<Mensaje tipo="ahorro">💪 Buen trabajo, ahorraste un {0:N0}% este mes.</Mensaje>
-	<Mensaje tipo="ahorro">🤑 Ahorraste el {0:N0}%. ¡Crack financiero!</Mensaje>
 </Mensajes>
 

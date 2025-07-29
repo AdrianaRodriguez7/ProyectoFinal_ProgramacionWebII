@@ -1,0 +1,14 @@
+﻿.tarjeta-opcion {
+    transition: transform 0.3s ease;
+    border-radius: 15px;
+}
+
+    .tarjeta-opcion:hover {
+        transform: scale(1.05);
+    }
+
+.icono-opcion {
+    width: 80px;
+    height: 80px;
+    margin: 20px auto 10px;
+}

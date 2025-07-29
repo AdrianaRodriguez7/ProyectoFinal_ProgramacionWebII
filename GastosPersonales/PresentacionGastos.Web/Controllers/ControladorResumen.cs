@@ -1,6 +1,7 @@
 ﻿using EnlaceGastos.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using PresentacionGastos.Web.Models;
+using EnlaceGastos.Services.DTOs;
 
 namespace PresentacionGastos.Web.Controllers
 {
@@ -39,7 +40,8 @@ namespace PresentacionGastos.Web.Controllers
             modelo.TotalIngresos = resultado.TotalIngresos;
             modelo.TotalEgresos = resultado.TotalEgresos;
             modelo.Mensaje = resultado.Mensaje;
-
+            modelo.MontosPorCategoria = resultado.MontosPorCategoria;
+            modelo.CategoriaMayorGasto = resultado.CategoriaMayorGasto;
             return View(modelo);
         }
     }

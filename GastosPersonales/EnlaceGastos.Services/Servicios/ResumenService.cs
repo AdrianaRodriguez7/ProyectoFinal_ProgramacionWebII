@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DatosGastos.Data;
 using EnlaceGastos.Services.Estrategias;
-using Microsoft.EntityFrameworkCore;
 using EnlaceGastos.Services.Interfaces;
+using EnlaceGastos.Services.DTOs;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace EnlaceGastos.Services.Servicios
 {
@@ -21,7 +21,7 @@ namespace EnlaceGastos.Services.Servicios
             _estrategia = estrategia;
         }
 
-        public async Task<(decimal TotalIngresos, decimal TotalEgresos, string Mensaje)> GenerarResumenAsync(DateTime desde, DateTime hasta)
+        public async Task<ResumenVM> GenerarResumenAsync(DateTime desde, DateTime hasta)
         {
             var ingresos = await _context.Transacciones
                 .Where(t => t.Fecha.Date >= desde.Date && t.Fecha.Date <= hasta.Date && t.TipoTransaccionId == 1)
@@ -33,7 +33,32 @@ namespace EnlaceGastos.Services.Servicios
 
             var mensaje = _estrategia.Evaluar(ingresos, egresos);
 
-            return (ingresos, egresos, mensaje);
+            // Agrupamos egresos por categoría
+            var egresosPorCategoria = await _context.Transacciones
+                .Where(t => t.Fecha.Date >= desde.Date && t.Fecha.Date <= hasta.Date && t.TipoTransaccionId == 2)
+                .Include(t => t.Categoria)
+                .GroupBy(t => t.Categoria.Nombre)
+                .Select(g => new CategoriaMontoVM
+                {
+                    Categoria = g.Key,
+                    Monto = g.Sum(t => t.Monto)
+                })
+                .ToListAsync();
+
+            var mayorCategoria = egresosPorCategoria
+                .OrderByDescending(c => c.Monto)
+                .FirstOrDefault()?.Categoria ?? "ninguna categoría";
+
+            return new ResumenVM
+            {
+                FechaInicio = desde,
+                FechaFin = hasta,
+                TotalIngresos = ingresos,
+                TotalEgresos = egresos,
+                Mensaje = mensaje,
+                MontosPorCategoria = egresosPorCategoria,
+                CategoriaMayorGasto = mayorCategoria
+            };
         }
     }
 }

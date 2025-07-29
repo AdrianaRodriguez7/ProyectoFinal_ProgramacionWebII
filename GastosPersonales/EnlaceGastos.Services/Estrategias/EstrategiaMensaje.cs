@@ -40,7 +40,7 @@ namespace EnlaceGastos.Services.Estrategias
             }
 
             var ahorro = ingresos - egresos;
-            var porcentajeAhorro = (ahorro / ingresos) * 100;
+            var porcentajeAhorro = Math.Round((ahorro / ingresos) * 100, 1);
             return string.Format(ObtenerMensaje("ahorro"), porcentajeAhorro);
         }
 

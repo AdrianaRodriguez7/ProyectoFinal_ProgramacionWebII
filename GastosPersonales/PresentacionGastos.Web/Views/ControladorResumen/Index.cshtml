@@ -1,8 +1,10 @@
-﻿@model PresentacionGastos.Web.Models.ResumenVM
+﻿@model EnlaceGastos.Services.DTOs.ResumenVM
+@using Newtonsoft.Json
 
 @{
     ViewData["Title"] = "Resumen financiero";
 }
+
 
 <h2>Resumen financiero</h2>
 
@@ -18,7 +20,7 @@
     <button type="submit" class="btn btn-primary mt-2">Consultar</button>
 </form>
 
-@if (Model.Mensaje != null && Model.Mensaje != "")
+@if (!string.IsNullOrEmpty(Model.Mensaje))
 {
     <div class="alert alert-info mt-4">
         <strong>Mensaje:</strong> @Model.Mensaje
@@ -27,6 +29,47 @@
     <div class="mt-2">
         <p><strong>Total de ingresos:</strong> @Model.TotalIngresos.ToString("C")</p>
         <p><strong>Total de egresos:</strong> @Model.TotalEgresos.ToString("C")</p>
+       
     </div>
+
+    @if (Model.MontosPorCategoria != null && Model.MontosPorCategoria.Any())
+    {
+        <div class="d-flex justify-content-center mt-4">
+            <div class="card shadow p-4" style="max-width: 600px; width: 100%;">
+                <h4 class="text-center">Gastos por categoría</h4>
+                <p class="text-center"><strong>Mayor gasto en:</strong> @Model.CategoriaMayorGasto</p>
+                <p class="text-muted text-center">Se encontraron @Model.MontosPorCategoria.Count categorías con egresos.</p>
+                <canvas id="graficoCategorias" class="grafico-pequeno"></canvas>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const ctx = document.getElementById('graficoCategorias').getContext('2d');
+            const grafico = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(JsonConvert.SerializeObject(Model.MontosPorCategoria.Select(c => c.Categoria))),
+                    datasets: [{
+                        label: 'Monto (Bs)',
+                        data: @Html.Raw(JsonConvert.SerializeObject(Model.MontosPorCategoria.Select(c => c.Monto))),
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+
+    }
 }
 
