@@ -27,7 +27,23 @@ namespace EnlaceGastos.Services.Servicios
 
         public async Task<List<Categoria>> ObtenerCategoriasAsync()
         {
-            return await _context.Categorias.ToListAsync();
+            return await _context.Categorias
+            .Where(c => !c.Eliminado)
+                         .ToListAsync();
         }
+
+        
+           public async Task EliminarCategoriaAsync(int id)
+        {
+            var categoria = await _context.Categorias.FindAsync(id);
+            if (categoria != null)
+            {
+                categoria.Eliminado = true; // Marcar como eliminado
+                _context.Categorias.Update(categoria); 
+                await _context.SaveChangesAsync(); // Guardar cambios en la base de datos
+            }
+        }
+
     }
 }
+

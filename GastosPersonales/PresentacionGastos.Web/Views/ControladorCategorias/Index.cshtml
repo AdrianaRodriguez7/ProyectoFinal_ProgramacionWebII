@@ -4,6 +4,8 @@
     ViewData["Title"] = "Lista de Categorías";
 }
 
+
+
 <h2>Lista de Categorías</h2>
 
 <a asp-controller="ControladorCategorias" asp-action="Crear" class="btn btn-primary mb-3">Crear nueva categoría</a>
@@ -21,6 +23,14 @@
             <tr>
                 <td>@categoria.Id</td>
                 <td>@categoria.Nombre</td>
+                <td>
+                    <!-- Botón para eliminar con confirmación -->
+                    <form asp-action="Eliminar" method="post" asp-route-id="@categoria.Id" style="display:inline;"
+                          onsubmit="return confirm('¿Estás seguro de eliminar esta categoría?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+                
             </tr>
         }
     </tbody>

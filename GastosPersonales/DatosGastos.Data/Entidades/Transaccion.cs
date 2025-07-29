@@ -29,6 +29,7 @@ namespace DatosGastos.Data.Entidades
         public int TipoTransaccionId { get; set; }
         public TipoTransaccion TipoTransaccion { get; set; }
 
+        public bool Eliminado { get; set; } = false;
 
     }
 }

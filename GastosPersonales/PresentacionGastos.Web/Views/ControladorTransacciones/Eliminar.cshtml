@@ -24,10 +24,16 @@
         <dd class="col-sm-8">@Model.TipoTransaccion?.Nombre</dd>
     </dl>
 
-    <form asp-action="EliminarConfirmado" method="post">
+    <form asp-action="Eliminar" method="post">
         <input type="hidden" asp-for="Id" />
         <button type="submit" class="btn btn-danger">Sí, eliminar</button>
         <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
     </form>
+    <div style="position: fixed; bottom: 10px; right: 10px; z-index: 999;">
+        <img src="https://i.pinimg.com/originals/4f/32/af/4f32afae008fb7b33af86b5262fc1f6d.gif"
+             alt="GIF animado"
+             style="width: 500px; height: auto; border-radius: 8px;" />
+    </div>
+
 </div>
 

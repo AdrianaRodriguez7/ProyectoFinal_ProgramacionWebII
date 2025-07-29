@@ -24,12 +24,16 @@ namespace EnlaceGastos.Services.Servicios
             return await _context.Transacciones
                 .Include(t => t.Categoria)
                 .Include(t => t.TipoTransaccion)
-                .ToListAsync();
+                .Where(c => !c.Eliminado)
+                         .ToListAsync();
         }
 
         public async Task<Transaccion?> ObtenerPorIdAsync(int id)
         {
-            return await _context.Transacciones.FindAsync(id);
+            return await _context.Transacciones
+        .Include(t => t.Categoria)
+        .Include(t => t.TipoTransaccion)
+        .FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task CrearAsync(Transaccion transaccion)
@@ -49,6 +53,7 @@ namespace EnlaceGastos.Services.Servicios
             var transaccion = await ObtenerPorIdAsync(id);
             if (transaccion != null)
             {
+                transaccion.Eliminado = true; // Marcar como eliminado
                 _context.Transacciones.Remove(transaccion);
                 await _context.SaveChangesAsync();
             }

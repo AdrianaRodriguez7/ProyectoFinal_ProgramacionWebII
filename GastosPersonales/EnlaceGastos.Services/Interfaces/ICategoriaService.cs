@@ -11,5 +11,10 @@ namespace EnlaceGastos.Services.Interfaces
     {
         Task CrearCategoriaAsync(Categoria categoria);
         Task<List<Categoria>> ObtenerCategoriasAsync();
+        Task EliminarCategoriaAsync(int id);
+
     }
 }
+
+
+

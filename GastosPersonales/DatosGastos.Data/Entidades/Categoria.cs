@@ -15,6 +15,6 @@ namespace DatosGastos.Data.Entidades
         public string Nombre { get; set; }
 
         public ICollection<Transaccion> Transacciones { get; set; } = new List<Transaccion>();
-
+        public bool Eliminado { get; set; } = false;
     }
 }

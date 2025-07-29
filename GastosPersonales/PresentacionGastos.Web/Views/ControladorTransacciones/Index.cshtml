@@ -4,12 +4,20 @@
     ViewData["Title"] = "Lista de Transacciones";
 }
 
-<h2 class="mb-4">Transacciones Registradas</h2>
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+    <img src="https://i.pinimg.com/736x/77/fa/cc/77facc4484241327c75bcdb2a2f5c5ef.jpg"
+         alt="gato vigilante"
+         style="height: 60px;" />
 
-<a asp-action="Crear" class="btn btn-success mb-3">Registrar nueva transacción</a>
+    <div>
+        <h2 class="mb-3">Transacciones Registradas</h2>
+        <a asp-action="Crear" class="btn btn-dark">Registrar nueva transacción</a>
+    </div>
+</div>
 
-<table class="table table-bordered table-striped">
-    <thead class="table-info">
+
+<table class="table  table-striped">
+    <thead >
         
         <tr>
             <th>Descripción</th>
@@ -29,10 +37,11 @@
                 <td>@item.Fecha.ToShortDateString()</td>
                 <td>@item.Categoria?.Nombre</td>
                 <td>@item.TipoTransaccion?.Nombre</td>
-                <td>
-                    <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-2">Eliminar</a>
+                <td class="acciones-columna">
+                    <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
                 </td>
+
             </tr>
         }
     </tbody>

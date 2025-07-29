@@ -4,6 +4,7 @@ using EnlaceGastos.Services.Interfaces;
 using DatosGastos.Data.Entidades;
 using EnlaceGastos.Services.Servicios;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace PresentacionGastos.Web.Controllers
 {
@@ -42,7 +43,14 @@ namespace PresentacionGastos.Web.Controllers
             return View(categorias);
         }
 
-       
+        ///////////////////////ELIMINAR//////////////////
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int id)
+        {
+            await _categoriaService.EliminarCategoriaAsync(id);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
